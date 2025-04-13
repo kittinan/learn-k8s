@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: learn-k8s-frontend 
+  labels:
+    app: learn-k8s-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: learn-k8s-frontend
+  template:
+    metadata:
+      labels:
+        app: learn-k8s-frontend
+    spec:
+      containers:
+      - name: learn-k8s-frontend
+        image: kittinan/learn-k8s:frontend
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "128Mi"
+          requests:
+            cpu: "100m"
+            memory: "64Mi"

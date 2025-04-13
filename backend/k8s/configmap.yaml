@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: learn-k8s-backend-config
+  labels:
+    app: learn-k8s-backend
+data:
+  # You can add configuration key-value pairs here, for example:
+  LOG_LEVEL: "info"
+  ENVIRONMENT: "production"
+  GITHUB_USERNAME: "kittinan"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
