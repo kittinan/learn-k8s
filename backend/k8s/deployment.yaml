@@ -31,3 +31,21 @@ spec:
         - configMapRef:
             name: learn-k8s-backend-config
 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: learn-k8s-backend
+  labels:
+    app: learn-k8s-backend
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8000
+    nodePort: 30080
+    protocol: TCP
+    name: http
+  selector:
+    app: learn-k8s-backend

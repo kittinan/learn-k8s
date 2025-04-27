@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-ingress
+  name: learn-k8s-nginx-ingress
   labels:
-    app: nginx-ingress
+    app: learn-k8s-nginx-ingress
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-ingress
+      app: learn-k8s-nginx-ingress
   template:
     metadata:
       labels:
-        app: nginx-ingress
+        app: learn-k8s-nginx-ingress
     spec:
       containers:
-      - name: nginx-ingress
+      - name: learn-k8s-nginx-ingress
         image: nginx:1.25
         imagePullPolicy: Always
         ports:
@@ -28,20 +28,20 @@ spec:
             cpu: "100m"
             memory: "64Mi"
         volumeMounts:
-        - name: nginx-config
+        - name: learn-k8s-nginx-config
           mountPath: /etc/nginx/conf.d/default.conf
           subPath: nginx.conf
       volumes:
-      - name: nginx-config
+      - name: learn-k8s-nginx-config
         configMap:
-          name: nginx-config
+          name: learn-k8s-nginx-config
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-ingress
+  name: learn-k8s-nginx-ingress
   labels:
-    app: nginx-ingress
+    app: learn-k8s-nginx-ingress
 spec:
   type: NodePort
   ports:
@@ -51,12 +51,12 @@ spec:
     protocol: TCP
     name: http
   selector:
-    app: nginx-ingress
+    app: learn-k8s-nginx-ingress
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginx-config
+  name: learn-k8s-nginx-config
 data:
   nginx.conf: |
     server {
